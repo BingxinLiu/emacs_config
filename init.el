@@ -101,7 +101,7 @@
  '(custom-safe-themes
    '("d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" default))
  '(package-selected-packages
-   '(gruvbox-theme auto-complete ace-window which-key try use-package)))
+   '(yasnippet jedi flycheck gruvbox-theme auto-complete ace-window which-key try use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

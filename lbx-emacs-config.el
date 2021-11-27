@@ -11,3 +11,20 @@
 (tool-bar-mode -1)
 
 (setq custom-tab-width 4)
+
+;;; package --- setting up flycheck
+;;; Commentary: flycheck
+;;; Code:
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode t))
+
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:ac-setup))
+
+(use-package yasnippet
+  :ensure t
+  :init (yas-global-mode 1))

@@ -75,3 +75,34 @@
    (global-whitespace-mode) ; Enable whitespace mode everywhere
    ; END TABS CONFIG
    
+
+
+* CODING SETTING:
+** Flycheck Setting:
+   A code grammary checking tool
+   #+BEGIN_SRC emacs-lisp
+     ;;; package --- setting up flycheck
+     ;;; Commentary: flycheck
+     ;;; Code:
+     (use-package flycheck
+       :ensure t
+       :init (global-flycheck-mode t))
+   #+END_SRC
+
+** Jedi Setting:
+   A completion package for Python
+   #+BEGIN_SRC emacs-lisp
+     (use-package jedi
+       :ensure t
+       :init
+       (add-hook 'python-mode-hook 'jedi:setup)
+       (add-hook 'python-mode-hook 'jedi:ac-setup))
+   #+END_SRC
+
+** Yasnippet Setting:
+   A plugin allow you insert a pre-configured code snippet like class
+   #+BEGIN_SRC emacs-lisp
+     (use-package yasnippet
+       :ensure t
+       :init (yas-global-mode 1))
+   #+END_SRC
