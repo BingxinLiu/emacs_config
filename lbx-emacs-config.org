@@ -1,3 +1,5 @@
+#+STARTUP: overview
+
 * INIT SETTING:
 ** Package Setting:
    #+BEGIN_SRC emacs-lisp
@@ -87,7 +89,11 @@
    ; END TABS CONFIG
    
 
-
+** Revert Buffer:
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "<f5>") 'revert-buffer)
+   #+end_src
+   
 * EDITING SETTING:
 ** Hint Package:
    #+BEGIN_SRC emacs-lisp
@@ -156,7 +162,36 @@
        :init (global-undo-tree-mode))
    #+END_SRC
 
+** Highlight line Mode
+   #+begin_src emacs-lisp
+     (global-hl-line-mode t)
+   #+end_src
+** Beacond Mode:
+   #+begin_src emacs-lisp
+     ; flashes the cursor's line when you scroll
+     (use-package beacon
+       :ensure t
+       :config
+       (beacon-mode 1)
+       ;; set color like below:
+       ;; (setq beacon-color "#666600")
+       )
+   #+end_src
+   
+** Expand Region:
+   #+begin_src emacs-lisp
+     (use-package expand-region
+       :ensure t
+       :config (global-set-key (kbd "C-=") 'er/expand-region))
+   #+end_src
+   
+** Iedit
+   #+begin_src emacs-lisp
+     (use-package iedit
+       :ensure t)
+   #+end_src
 
+   
 * CODING SETTING:
 ** Flycheck Setting:
    A code grammary checking tool
@@ -190,30 +225,16 @@
 
 
 ** C++ Setting:
-   Auto Complete C Header
    #+begin_src emacs-lisp
-	  ; hooks for c/c++ mode
-	  (defun my:ac-c-header-init ()
-	    (require 'auto-complete-c-headers)
-	    (add-to-list 'ac-sources 'ac-source-c-headers)
-	    (add-to-list 'achead:include-directories
-			 (append '("/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1"
-				   "/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"
-				   "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-				   "/Library/Developer/CommandLineTools/usr/include"
-     ;			      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)"
-				   ))))
-	  (add-hook 'c++-mode-hook 'my:ac-c-header-init)
-	  (add-hook 'c-mode-hook 'my:ac-c-header-init)
-   #+end_src
+     (use-package lsp-mode
+       :ensure t
+       :commands lsp)
 
-   Iedit
-   #+begin_src emacs-lisp
-     (use-package iedit
-       :ensure true
-       :config (define-key global-map (kbd "C-c ;") 'iedit-mode))
+     (use-package lsp-ui
+       :ensure t)
    #+end_src
    
+
 * ORG-MODE SETTING:
   #+BEGIN_SRC emacs-lisp
     (use-package org-bullets

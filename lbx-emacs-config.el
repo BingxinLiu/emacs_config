@@ -25,6 +25,8 @@
 
 (setq custom-tab-width 4)
 
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
 (use-package try
   :ensure t)
 
@@ -86,6 +88,24 @@
   :ensure t
   :init (global-undo-tree-mode))
 
+(global-hl-line-mode t)
+
+; flashes the cursor's line when you scroll
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1)
+  ;; set color like below:
+  ;; (setq beacon-color "#666600")
+  )
+
+(use-package expand-region
+  :ensure t
+  :config (global-set-key (kbd "C-=") 'er/expand-region))
+
+(use-package iedit
+  :ensure t)
+
 ;;; package --- setting up flycheck
 ;;; Commentary: flycheck
 ;;; Code:
@@ -103,23 +123,12 @@
   :ensure t
   :init (yas-global-mode 1))
 
-; hooks for c/c++ mode
-     (defun my:ac-c-header-init ()
-       (require 'auto-complete-c-headers)
-       (add-to-list 'ac-sources 'ac-source-c-headers)
-       (add-to-list 'achead:include-directories
-		    (append '("/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1"
-			      "/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"
-			      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-			      "/Library/Developer/CommandLineTools/usr/include"
-;			      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)"
-			      ))))
-     (add-hook 'c++-mode-hook 'my:ac-c-header-init)
-     (add-hook 'c-mode-hook 'my:ac-c-header-init)
+(use-package lsp-mode
+  :ensure t
+  :commands lsp)
 
-(use-package iedit
-  :ensure true
-  :config (define-key global-map (kbd "C-c ;") 'iedit-mode))
+(use-package lsp-ui
+  :ensure t)
 
 (use-package org-bullets
   :ensure t
