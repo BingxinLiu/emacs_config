@@ -223,15 +223,27 @@
    #+END_SRC
 
 
+** LSP-mode setting:
+   #+begin_src emacs-lisp
+     (use-package company
+       :ensure t
+       :config
+       (setq company-idle-delay 0)
+       (setq company-minimum-prefix-length 3)
+
+       (global-company-mode t))
+   #+end_src
 
 ** C++ Setting:
    #+begin_src emacs-lisp
-     (use-package lsp-mode
-       :ensure t
-       :commands lsp)
+     ;; require eglot to work with clangd
+ ;    (use-package 'eglot)
+ ;    (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+;     (add-hook 'c-mode-hook 'eglot-ensure)
+;     (add-hook 'c++-mode-hook 'eglot-ensure)
 
-     (use-package lsp-ui
-       :ensure t)
+;     (setq lsp-clangd-executable "clangd")
+;     (setq lsp-clients-clangd-executable "clangd")
    #+end_src
    
 

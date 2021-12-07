@@ -123,12 +123,22 @@
   :ensure t
   :init (yas-global-mode 1))
 
-(use-package lsp-mode
+(use-package company
   :ensure t
-  :commands lsp)
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
 
-(use-package lsp-ui
-  :ensure t)
+  (global-company-mode t))
+
+;; require eglot to work with clangd
+ ;    (use-package 'eglot)
+ ;    (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+;     (add-hook 'c-mode-hook 'eglot-ensure)
+;     (add-hook 'c++-mode-hook 'eglot-ensure)
+
+;     (setq lsp-clangd-executable "clangd")
+;     (setq lsp-clients-clangd-executable "clangd")
 
 (use-package org-bullets
   :ensure t
